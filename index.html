@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10th Class Education Guide</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #home-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1e3a8a;
+        }
+
+        .home-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            margin: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #4338ca;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>10th Class Education Guide</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="project_pics.html">Project Pics</a>
+            <a href="roadmap.html">Roadmap</a>
+        </nav>
+    </header>
+
+    <div id="home-container"></div>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+
+    <script type="text/babel">
+        function HomePage() {
+            return (
+                <div>
+                    <div className="home-card">
+                        <h1>Welcome to the 10th Class Education Guide 🎓</h1>
+                        <p>This website helps students prepare effectively for their exams, explore subjects, test their knowledge with quizzes, and track progress through the dashboard.</p>
+                        <p>Use the navigation links above to explore different sections:</p>
+                        <ul style={{ textAlign: "left", display: "inline-block" }}>
+                            <li><strong>Subjects:</strong> Study materials for each subject.</li>
+                            <li><strong>Quiz:</strong> Test your knowledge interactively.</li>
+                            <li><strong>Dashboard:</strong> View your performance and progress.</li>
+                            <li><strong>Project Pics:</strong> See images of the learning journey and project progress.</li>
+                            <li><strong>Roadmap:</strong> View the step-by-step work plan.</li>
+                        </ul>
+                        <p>Click below to start your learning journey 👇</p>
+                        <a href="subjects.html"><button>Start Learning</button></a>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<HomePage />, document.getElementById("home-container"));
+    </script>
+</body>
+
+</html>
