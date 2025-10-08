@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects - 10th Class Education Guide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef9c3, #dcfce7);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.5s;
+            border: 4px solid transparent;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            display: block;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            transition: .3s;
+        }
+
+        .card p {
+            color: #374151;
+            font-size: 0.95em;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4f46e5, #16a34a, #facc15, #f43f5e);
+            opacity: 0;
+            transition: .5s;
+            z-index: -1;
+        }
+
+        .card:hover::before {
+            opacity: 0.2;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Optional: Different colors for each subject */
+        .card:nth-child(1)::before {
+            background: linear-gradient(45deg, #f43f5e, #fbbf24, #10b981);
+        }
+
+        .card:nth-child(2)::before {
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6, #ec4899);
+        }
+
+        .card:nth-child(3)::before {
+            background: linear-gradient(45deg, #14b8a6, #06b6d4, #f97316);
+        }
+
+        .card:nth-child(4)::before {
+            background: linear-gradient(45deg, #f59e0b, #eab308, #84cc16);
+        }
+
+        .card:nth-child(5)::before {
+            background: linear-gradient(45deg, #3b82f6, #9333ea, #22c55e);
+        }
+
+        .card:nth-child(6)::before {
+            background: linear-gradient(45deg, #f43f5e, #fb7185, #facc15);
+        }
+
+        .card:nth-child(7)::before {
+            background: linear-gradient(45deg, #10b981, #06b6d4, #3b82f6);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Subjects Overview</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="studyplan.html">Study Plan</a>
+        </nav>
+    </header>
+
+    <section class="subjects">
+        <div class="card"><a href="subjects/telugu.html">Telugu</a>
+            <p>Grammar, literature, and comprehension for Telugu medium students.</p>
+        </div>
+        <div class="card"><a href="subjects/hindi.html">Hindi</a>
+            <p>Vyakaran, prose summaries, and writing practice.</p>
+        </div>
+        <div class="card"><a href="subjects/english.html">English</a>
+            <p>Reading comprehension, grammar, and essays.</p>
+        </div>
+        <div class="card"><a href="subjects/mathematics.html">Mathematics</a>
+            <p>Formulas, model problems, and geometry lessons.</p>
+        </div>
+        <div class="card"><a href="subjects/physical_science.html">Physical Science</a>
+            <p>Physics and Chemistry fundamentals with examples.</p>
+        </div>
+        <div class="card"><a href="subjects/biological_science.html">Biological Science</a>
+            <p>Biology notes, diagrams, and key definitions.</p>
+        </div>
+        <div class="card"><a href="subjects/social.html">Social Studies</a>
+            <p>History, Geography, Civics, and Economics summaries.</p>
+        </div>
+    </section>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+</body>
+
+</html>

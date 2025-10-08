@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - 10th Class Education Guide</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #dashboard-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .subject-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-summary h3 {
+            margin: 0 0 10px 0;
+            color: #1e3a8a;
+        }
+
+        .subject-summary p {
+            margin: 4px 0;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            background: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 20px;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            line-height: 20px;
+            transition: width 0.5s ease;
+        }
+
+        .overall-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Overall Dashboard</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <div id="dashboard-container"></div>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const subjects = ["Telugu", "Hindi", "English", "Mathematics", "Physical Science", "Biological Science", "Social"];
+
+        function Dashboard() {
+            const [data, setData] = useState([]);
+
+            useEffect(() => {
+                const allData = subjects.map(subj => {
+                    const stored = JSON.parse(localStorage.getItem(subj)) || [];
+                    let best = stored.length > 0 ? Math.max(...stored.map(e => e.percent)) : 0;
+                    let avg = stored.length > 0 ? Math.round(stored.reduce((sum, e) => sum + e.percent, 0) / stored.length) : 0;
+                    return { subject: subj, attempts: stored.length, best, avg };
+                });
+                setData(allData);
+            }, []);
+
+            const totalAttempts = data.reduce((sum, d) => sum + d.attempts, 0);
+            const totalBest = data.reduce((sum, d) => sum + d.best, 0);
+            const totalAvg = data.length > 0 ? Math.round(totalBest / data.length) : 0;
+
+            return (
+                <div>
+                    {data.map((d, i) => (
+                        <div key={i} className="subject-summary">
+                            <h3>{d.subject}</h3>
+                            <p>Attempts: {d.attempts}</p>
+                            <p>Best Score: {d.best}%</p>
+                            <div className="progress-bar-container">
+                                <div className="progress-bar" style={{ width: `${d.best}%`, background: `linear-gradient(90deg,#FFD700,#FFAA00)` }}>{d.best}%</div>
+                            </div>
+                            <p>Average Score: {d.avg}%</p>
+                            <div className="progress-bar-container">
+                                <div className="progress-bar" style={{ width: `${d.avg}%`, background: `linear-gradient(90deg,#4f46e5,#16a34a)` }}>{d.avg}%</div>
+                            </div>
+                        </div>
+                    ))}
+                    <div className="overall-summary">
+                        <h3>🏆 Overall Summary</h3>
+                        <p>Total Attempts: {totalAttempts}</p>
+                        <p>Overall Best Score (sum of best per subject / subjects): {totalAvg}%</p>
+                    </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<Dashboard />, document.getElementById("dashboard-container"));
+    </script>
+</body>
+
+</html>

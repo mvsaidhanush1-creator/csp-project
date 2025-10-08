@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - 10th Class Education Guide</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #quiz-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .subject-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .subject-buttons button {
+            margin: 5px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 12px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .subject-buttons button:hover {
+            background: #4338ca;
+            transform: scale(1.05);
+        }
+
+        .progress-bar-container {
+            background: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            width: 0%;
+            transition: width 0.5s ease;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        button.option {
+            padding: 12px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        button.option:hover {
+            background: #4338ca;
+            transform: scale(1.05);
+        }
+
+        button.option:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: red;
+        }
+
+        #next-btn,
+        #restart-btn,
+        #change-subj-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            background: #16a34a;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            margin-right: 10px;
+        }
+
+        #next-btn:hover,
+        #restart-btn:hover,
+        #change-subj-btn:hover {
+            background: #15803d;
+            transform: scale(1.05);
+        }
+
+        #score {
+            font-size: 1.2em;
+            color: #1e3a8a;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .score-bar-container {
+            background: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 25px;
+            margin-top: 20px;
+        }
+
+        .score-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #facc15, #16a34a);
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            line-height: 25px;
+            transition: width 0.5s ease;
+        }
+
+        .leaderboard {
+            margin-top: 20px;
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard h4 {
+            margin: 0 0 10px 0;
+            color: #1e40af;
+        }
+
+        .leaderboard-entry {
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+
+        .leaderboard-bar-container {
+            background: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 20px;
+            margin-top: 4px;
+        }
+
+        .leaderboard-bar {
+            height: 100%;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            line-height: 20px;
+            transition: width 0.5s ease;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Quiz Page</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="studyplan.html">Study Plan</a>
+        </nav>
+    </header>
+
+    <div id="quiz-container"></div>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const allQuizzes = {
+            Telugu: [
+                { question: "Telugu: Select correct vowel mark?", options: ["అ", "ఆ", "ఇ", "ఈ"], answer: "అ" },
+                { question: "Telugu grammar: What is 'నాకు'?", options: ["Pronoun", "Verb", "Noun", "Adjective"], answer: "Pronoun" }
+            ],
+            Hindi: [
+                { question: "Hindi: What is 'पुस्तक'?", options: ["Book", "Pen", "Table", "Chair"], answer: "Book" },
+                { question: "Hindi grammar: Identify the verb in sentence", options: ["खेलता", "बड़ा", "सफेद", "पाठ"], answer: "खेलता" }
+            ],
+            English: [
+                { question: "English: Synonym of 'Happy'?", options: ["Sad", "Joyful", "Angry", "Tired"], answer: "Joyful" },
+                { question: "English: Choose correct article", options: ["a", "an", "the", "all"], answer: "a" }
+            ],
+            Mathematics: [
+                { question: "2 × 5 =", options: ["10", "20", "15", "8"], answer: "10" },
+                { question: "Square root of 49?", options: ["5", "6", "7", "8"], answer: "7" }
+            ],
+            "Physical Science": [
+                { question: "Water formula?", options: ["H2O", "CO2", "NaCl", "O2"], answer: "H2O" },
+                { question: "Speed formula?", options: ["S = D/T", "T = D/S", "S = T/D", "D = S*T"], answer: "S = D/T" }
+            ],
+            "Biological Science": [
+                { question: "Humans have how many chromosomes?", options: ["46", "42", "48", "44"], answer: "46" },
+                { question: "Plant cells have?", options: ["Cell wall", "Chloroplast", "Both", "None"], answer: "Both" }
+            ],
+            Social: [
+                { question: "Capital of India?", options: ["Delhi", "Mumbai", "Kolkata", "Chennai"], answer: "Delhi" },
+                { question: "First Prime Minister of India?", options: ["Gandhi", "Nehru", "Patel", "Azad"], answer: "Nehru" }
+            ]
+        };
+
+        function shuffleArray(array) { return array.sort(() => Math.random() - 0.5); }
+        function shuffleOptions(questions) { return questions.map(q => ({ ...q, options: shuffleArray([...q.options]) })); }
+
+        function QuizApp() {
+            const subjects = Object.keys(allQuizzes);
+            const [selectedSubject, setSelectedSubject] = useState(null);
+            const [current, setCurrent] = useState(0);
+            const [feedback, setFeedback] = useState("");
+            const [score, setScore] = useState(0);
+            const [completed, setCompleted] = useState(false);
+            const [shuffledQuestions, setShuffledQuestions] = useState([]);
+            const [leaderboard, setLeaderboard] = useState([]);
+
+            useEffect(() => {
+                if (selectedSubject) {
+                    const stored = JSON.parse(localStorage.getItem(selectedSubject)) || [];
+                    setLeaderboard(stored);
+                }
+            }, [selectedSubject]);
+
+            const handleSubject = (subj) => {
+                const shuffled = shuffleOptions(shuffleArray([...allQuizzes[subj]]));
+                setSelectedSubject(subj);
+                setShuffledQuestions(shuffled);
+                setCurrent(0);
+                setFeedback("");
+                setScore(0);
+                setCompleted(false);
+            }
+
+            const handleAnswer = (selected) => {
+                const correct = shuffledQuestions[current].answer;
+                if (selected === correct) { setFeedback("Correct!"); setScore(score + 1); }
+                else { setFeedback(`Wrong! Correct Answer: ${correct}`); }
+            }
+
+            const nextQuestion = () => {
+                if (current + 1 < shuffledQuestions.length) { setCurrent(current + 1); setFeedback(""); }
+                else {
+                    setCompleted(true);
+                    const percent = Math.round((score / shuffledQuestions.length) * 100);
+                    const newEntry = { score, total: shuffledQuestions.length, percent, date: new Date().toLocaleString() };
+                    const updatedLeaderboard = [newEntry, ...leaderboard];
+                    localStorage.setItem(selectedSubject, JSON.stringify(updatedLeaderboard));
+                    setLeaderboard(updatedLeaderboard);
+                }
+            }
+
+            const restartQuiz = () => {
+                const shuffled = shuffleOptions(shuffleArray([...allQuizzes[selectedSubject]]));
+                setShuffledQuestions(shuffled);
+                setCurrent(0);
+                setFeedback("");
+                setScore(0);
+                setCompleted(false);
+            }
+
+            const changeSubject = () => {
+                setSelectedSubject(null);
+                setCurrent(0);
+                setFeedback("");
+                setScore(0);
+                setCompleted(false);
+                setLeaderboard([]);
+            }
+
+            if (!selectedSubject) {
+                return <div className="subject-buttons">{subjects.map((subj, i) => <button key={i} onClick={() => handleSubject(subj)}>{subj}</button>)}</div>
+            }
+
+            if (completed) {
+                const percent = Math.round((score / shuffledQuestions.length) * 100);
+                const maxPercent = leaderboard.length > 0 ? Math.max(...leaderboard.map(e => e.percent)) : percent;
+
+                return (
+                    <div>
+                        <div id="score">🎉 Quiz Completed! Your Score: {score} / {shuffledQuestions.length}</div>
+                        <div className="score-bar-container">
+                            <div className="score-bar" style={{ width: `${percent}%` }}>{percent}%</div>
+                        </div>
+                        <div className="leaderboard">
+                            <h4>📊 {selectedSubject} Leaderboard (Past Attempts)</h4>
+                            {leaderboard.map((entry, i) => {
+                                const isBest = entry.percent === maxPercent;
+                                const barColor = isBest ? 'linear-gradient(90deg,#FFD700,#FFAA00)' : 'linear-gradient(90deg,#facc15,#16a34a)';
+                                return (
+                                    <div key={i} className="leaderboard-entry">
+                                        {entry.date}: {entry.score}/{entry.total} ({entry.percent}%)
+                                        <div className="leaderboard-bar-container">
+                                            <div className="leaderboard-bar" style={{ width: `${entry.percent}%`, background: barColor }}>{entry.percent}%</div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                            {leaderboard.length === 0 && <div>No past attempts yet.</div>}
+                        </div>
+                        <div className="button-group">
+                            <button id="restart-btn" onClick={restartQuiz}>Restart Quiz 🔄</button>
+                            <button id="change-subj-btn" onClick={changeSubject}>Change Subject 🔁</button>
+                        </div>
+                    </div>
+                )
+            }
+
+            const progressPercent = ((current) / shuffledQuestions.length) * 100;
+
+            return (
+                <div>
+                    <div className="progress-bar-container">
+                        <div className="progress-bar" style={{ width: `${progressPercent}%` }}>
+                            {current}/{shuffledQuestions.length}
+                        </div>
+                    </div>
+                    <div className="quiz-card">
+                        <h3>{current + 1}. {shuffledQuestions[current].question}</h3>
+                        {shuffledQuestions[current].options.map((opt, i) =>
+                            <button key={i} className="option" onClick={() => handleAnswer(opt)} disabled={feedback != ""}>{opt}</button>
+                        )}
+                        {feedback && <div className={`feedback ${feedback.startsWith("Correct") ? "correct" : "wrong"}`}>{feedback}</div>}
+                        {feedback &&
+                            <div className="button-group">
+                                <button id="next-btn" onClick={nextQuestion}>Next Question ➡️</button>
+                                <button id="change-subj-btn" onClick={changeSubject}>Change Subject 🔁</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<QuizApp />, document.getElementById("quiz-container"));
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Pics - 10th Class Education Guide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .project-img:hover {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            text-align: center;
+            font-weight: 500;
+            color: #1e3a8a;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Project Pictures</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="project_pics.html">Project Pics</a>
+            <a href="roadmap.html">Roadmap</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery">
+            <!-- Replace these placeholder images with your real project photos -->
+            <div>
+                <img src="images/1.jpg" alt="Project Image 1" class="project-img">
+                <div class="caption">Project Photo 1</div>
+            </div>
+            <div>
+                <img src="images/2.jpg" alt="Project Image 2" class="project-img">
+                <div class="caption">Project Photo 2</div>
+            </div>
+            <div>
+                <img src="images/3.jpg" alt="Project Image 3" class="project-img">
+                <div class="caption">Project Photo 3</div>
+            </div>
+            <div>
+                <img src="images/4.jpg" alt="Project Image 4" class="project-img">
+                <div class="caption">Project Photo 4</div>
+            </div>
+            <div>
+                <img src="images/5.jpg" alt="Project Image 4" class="project-img">
+                <div class="caption">Project Photo 5</div>
+            </div>
+            <div>
+                <img src="images/6.jpg" alt="Project Image 4" class="project-img">
+                <div class="caption">Project Photo 6</div>
+            </div>
+            <div>
+                <img src="images/7.jpg" alt="Project Image 4" class="project-img">
+                <div class="caption">Project Photo 7</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 10th Class Education Guide
+    </footer>
+</body>
+
+</html>

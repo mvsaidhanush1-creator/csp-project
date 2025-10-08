@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Roadmap - 10th Class Education Guide</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #roadmap-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .subject-section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-section h2 {
+            color: #1e3a8a;
+            border-bottom: 2px solid #16a34a;
+            padding-bottom: 8px;
+        }
+
+        .month-plan {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #f1f5f9;
+        }
+
+        .month-plan h3 {
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .month-plan ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #374151;
+        }
+
+        .month-plan li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>1-Year Study Roadmap</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="project_pics.html">Project Pics</a>
+            <a href="roadmap.html">Roadmap</a>
+        </nav>
+    </header>
+
+    <div id="roadmap-container"></div>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+
+    <script type="text/babel">
+
+        const roadmapData = {
+            Telugu: [
+                { month: "June", topics: ["Grammar basics", "Simple poems and meanings", "Comprehension practice"] },
+                { month: "July", topics: ["Short stories and proverbs", "Essay writing", "Letter writing (formal/informal)"] },
+                { month: "August", topics: ["Reading comprehension", "Synonyms and Antonyms", "Revision of Grammar"] },
+                { month: "September", topics: ["Poetry appreciation", "Summary writing", "Practice test 1"] },
+                { month: "October", topics: ["Story writing", "Idioms and phrases", "Practice test 2"] },
+                { month: "November", topics: ["Model papers", "Creative writing", "Mock test series"] },
+                { month: "December", topics: ["Final revision", "Grammar recap", "Speaking and listening activities"] },
+                { month: "January", topics: ["Final tests", "Improvement areas", "Exam readiness check"] }
+            ],
+            Hindi: [
+                { month: "June", topics: ["Vyakaran – Sangya, Sarvanaam", "Pathya pustak ke kahaniyan"] },
+                { month: "July", topics: ["Kriya aur Visheshan", "Letter writing, Anuchched lekhan"] },
+                { month: "August", topics: ["Muhavare aur Lokoktiyan", "Poem explanation"] },
+                { month: "September", topics: ["Grammar revision", "Comprehension practice"] },
+                { month: "October", topics: ["Essay practice", "Poem writing", "Practice paper 1"] },
+                { month: "November", topics: ["Mock tests", "Important lessons recap"] },
+                { month: "December", topics: ["Final revision", "Grammar worksheet"] },
+                { month: "January", topics: ["Last minute practice", "Model paper solving"] }
+            ],
+            English: [
+                { month: "June", topics: ["Parts of Speech", "Reading passages", "Simple essay writing"] },
+                { month: "July", topics: ["Tenses & Voice", "Poem analysis", "Paragraph writing"] },
+                { month: "August", topics: ["Comprehension practice", "Letter writing", "Vocabulary building"] },
+                { month: "September", topics: ["Notice writing", "Essay and grammar combined tests"] },
+                { month: "October", topics: ["Story writing", "Editing and proof-reading exercises"] },
+                { month: "November", topics: ["Mock tests & evaluation", "Reading unseen passages"] },
+                { month: "December", topics: ["Full syllabus revision", "Practice question papers"] },
+                { month: "January", topics: ["Pre-final exam preparation", "Final grammar test"] }
+            ],
+            Mathematics: [
+                { month: "June", topics: ["Real numbers", "Polynomials"] },
+                { month: "July", topics: ["Pair of linear equations", "Quadratic equations"] },
+                { month: "August", topics: ["Arithmetic progressions", "Trigonometric ratios"] },
+                { month: "September", topics: ["Heights & distances", "Coordinate geometry"] },
+                { month: "October", topics: ["Circles", "Areas related to circles"] },
+                { month: "November", topics: ["Surface areas & volumes", "Statistics"] },
+                { month: "December", topics: ["Probability", "Revision tests"] },
+                { month: "January", topics: ["Mock exams & final review"] }
+            ],
+            Science: [
+                { month: "June", topics: ["Chemical reactions", "Acids, bases & salts"] },
+                { month: "July", topics: ["Metals & non-metals", "Life processes"] },
+                { month: "August", topics: ["Control & coordination", "How do organisms reproduce?"] },
+                { month: "September", topics: ["Heredity & evolution", "Light – reflection & refraction"] },
+                { month: "October", topics: ["Human eye & colorful world", "Electricity"] },
+                { month: "November", topics: ["Magnetic effects of current", "Sources of energy"] },
+                { month: "December", topics: ["Environment & management", "Revision worksheets"] },
+                { month: "January", topics: ["Final model papers & practicals"] }
+            ],
+            Social: [
+                { month: "June", topics: ["India – Size and Location", "Physical Features of India"] },
+                { month: "July", topics: ["Drainage & Climate", "Resources and Development"] },
+                { month: "August", topics: ["Political science basics", "Power sharing and democracy"] },
+                { month: "September", topics: ["Economics – Development", "Sectors of Indian Economy"] },
+                { month: "October", topics: ["Globalisation", "Consumer rights"] },
+                { month: "November", topics: ["History – Nationalism in India", "Freedom struggle"] },
+                { month: "December", topics: ["Contemporary issues", "Revision & map practice"] },
+                { month: "January", topics: ["Final model test papers", "Complete revision"] }
+            ]
+        };
+
+        function Roadmap() {
+            return (
+                <div>
+                    {Object.keys(roadmapData).map((subject, i) => (
+                        <div key={i} className="subject-section">
+                            <h2>{subject}</h2>
+                            {roadmapData[subject].map((plan, j) => (
+                                <div key={j} className="month-plan">
+                                    <h3>{plan.month}</h3>
+                                    <ul>
+                                        {plan.topics.map((t, k) => (<li key={k}>{t}</li>))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        ReactDOM.render(<Roadmap />, document.getElementById("roadmap-container"));
+    </script>
+</body>
+
+</html>

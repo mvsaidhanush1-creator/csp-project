@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Plan - 10th Class Education Guide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, #fef3c7, #dbeafe);
+        }
+
+        header,
+        footer {
+            background: linear-gradient(90deg, #4f46e5, #16a34a);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        #plan-container {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .day-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: .5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .day-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .day-card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        /* Colorful gradient backgrounds for cards on hover */
+        .day-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4f46e5, #16a34a, #facc15, #f43f5e);
+            opacity: 0;
+            transition: .5s;
+            z-index: -1;
+        }
+
+        .day-card:hover::before {
+            opacity: 0.15;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Study Plan</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="studyplan.html">Study Plan</a>
+        </nav>
+    </header>
+
+    <div id="plan-container">
+        <div class="day-card">
+            <h3>Monday</h3>
+            <ul>
+                <li>Mathematics: Algebra & Geometry practice</li>
+                <li>Telugu: Grammar exercises</li>
+                <li>English: Comprehension & Writing</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Tuesday</h3>
+            <ul>
+                <li>Hindi: Literature & Grammar</li>
+                <li>Physical Science: Physics concepts</li>
+                <li>Mathematics: Trigonometry practice</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Wednesday</h3>
+            <ul>
+                <li>Biological Science: Plant & Human Biology</li>
+                <li>Social Studies: History chapters</li>
+                <li>English: Vocabulary & Essay practice</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Thursday</h3>
+            <ul>
+                <li>Mathematics: Statistics & Probability</li>
+                <li>Telugu: Poetry & Prose reading</li>
+                <li>Physical Science: Chemistry reactions</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Friday</h3>
+            <ul>
+                <li>Social Studies: Geography & Civics</li>
+                <li>Hindi: Writing & comprehension</li>
+                <li>Biological Science: Diagrams & cycles</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Saturday</h3>
+            <ul>
+                <li>English: Literature review</li>
+                <li>Mathematics: Practice problems</li>
+                <li>Physical Science: Revision & experiments</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Sunday</h3>
+            <ul>
+                <li>Revision day: All subjects</li>
+                <li>Take practice quizzes</li>
+                <li>Plan for next week</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>© 2025 10th Class Education Guide</footer>
+</body>
+
+</html>
